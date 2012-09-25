@@ -117,11 +117,17 @@ function field_example_field_is_empty($item, $field) {
 function field_example_field_formatter_info() {
   return array(
     // This formatter just displays the hex value in the color indicated.
+    // It seems like you can "manage the display" of RGB fields attached to nodes,
+    // but not RGB fields attached to comments.
     'field_example_simple_text' => array(
       'label'       => t('Simple text-based formatter'),
       'field types' => array('field_example_rgb'),
     ),
     // This formatter changes the background color of the content region.
+    // To set this, you need to go to admin/structure/types/manage/ARTICLE/display
+    // and select "Change the background of the output text". Then the entire
+    // region of content will change to that color.
+    // You can also select 'Hidden' as a display type.
     'field_example_color_background' => array(
       'label'       => t('Change the background of the output text'),
       'field types' => array('field_example_rgb'),
