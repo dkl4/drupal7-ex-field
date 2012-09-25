@@ -21,6 +21,7 @@
  * @see hook_field_schema()
  * @ingroup field_example
  */
+// I don't see an "uninstall".  How do we get rid of this newly created column?
 // Note that in many "regular" .install files, we implement hook_SCHEMA.
 // But in this field_example we have hook_FIELD_SCHEMA
 function field_example_field_schema($field) {
