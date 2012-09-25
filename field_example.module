@@ -42,13 +42,13 @@
  * The widget is the form element used to receive input from the user
  * when the field is being populated.
  *
- * @see field_types
- * @see field
+ * @see field_types()
+ * @see field()
  */
 
 /***************************************************************
  * Field Type API hooks
- ***************************************************************/
+ * *************************************************************/
 
 /**
  * Implements hook_field_info().
@@ -66,3 +66,40 @@ function field_example_field_info() {
     ),
   );
 }
+
+
+/**
+ * Implements hook_field_is_empty().
+ *
+ * hook_field_is_emtpy() is where Drupal asks us if this field is empty.
+ * Return TRUE if it does not contain data, FALSE if it does. This lets
+ * the form API flag an error when required fields are empty.
+ */
+function field_example_field_is_empty($item, $field) {
+  return empty($item['rgb']);
+}
+
+/**
+ * Implements hook_field_formatter_info().
+ *
+ * We need to tell Drupal that we have two different types of formatters
+ * for this field. One will change the text color, and the other will
+ * change the background color.
+ *
+ * @see field_example_field_formatter_view()
+ */
+function field_example_field_formatter_info() {
+  return array(
+    // This formatter just displays the hex value in the color indicated.
+    'field_example_simple_text' => array(
+      'label'       => t('Simple text-based formatter'),
+      'field types' => array('field_example_rgb'),
+    ),
+    // This formatter changes the background color of the content region.
+    'field_example_color_background' => array(
+      'label'       => t('Change the background of the output text'),
+      'field types' => array('field_example_rgb'),
+    ),
+  );
+}
+
