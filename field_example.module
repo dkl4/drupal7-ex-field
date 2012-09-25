@@ -213,6 +213,13 @@ function field_example_field_widget_info() {
  * handler that converts our r, g, and b fields into a simulated single
  * 'rgb' form element.
  */
+// This hook seems to be necessary to get a "real" field.  Upon entering this
+// hook we find :
+//  - We can add a field on comments at admin/structure/types/manage/article/comment/fields (example)
+//  - We get the following new database tables (my field name was "rgbOne" :
+//    -- field_data_field_rgbone     (cols : entity_type, bundle, deleted, entity_id, revision_id, language, delta, field_rgbOne_rgb)
+//    -- field_revision_field_rgbone (same cols as field_data_field_rgbone)
+//    -- The actual "data" is stored in column field_rgbone_rgb
 function field_example_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
   $value = isset($items[$delta]['rgb']) ? $items[$delta]['rgb'] : '';
 
