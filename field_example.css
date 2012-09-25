@@ -1,6 +1,7 @@
 /**
  * @file
  * CSS for Field Example.
+ * By adding this file, when you view the field text, the TEXT will be in the RGB color.
  */
 div.form-item table .form-type-textfield, 
 div.form-item table .form-type-textfield * {
